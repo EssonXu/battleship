@@ -1,0 +1,27 @@
+<!doctype html><!--一个普通的HTML页面-->
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Battleship</title>
+        <style>
+            body
+            {
+                background-color: black;/*我们要将网页的背景设置为黑色*/
+            }
+            div#board
+            {
+                position: relative;/*我们要让游戏板位于网页中央*/
+                width: 1024px;/*因此将width(游戏板的宽度)设置成1024像素*/
+                height: 863px;
+                margin: auto;/*并将margin(外边距)设置为auto*/
+                background: url("board.jpg")no-repeat;/*将<div>元素"body"的背景设置为图像board.jpg,从而将该图像添加到网页中。我们对这个<div>元素进行相对定位，以便相对于这个<div>对下一步添加的表格进行定位*/
+            }
+        </style>
+    </head>
+    <body>
+        <div id="board"><!--我们将在这个<div>元素中添加表示游戏板的网格以及用于获取玩家输入的表单-->
+
+        </div>
+        <script src="battleship.js"></script>
+    </body>
+</html>
