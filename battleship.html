@@ -10,11 +10,44 @@
             }
             div#board
             {
-                position: relative;/*我们要让游戏板位于网页中央*/
+                position: relative;/*我们要让游戏板位于网页中央|<div>元素board的定位方式是相对定位的，因此能以相对与该<div>元素的方式定位它嵌套的所有元素*/
                 width: 1024px;/*因此将width(游戏板的宽度)设置成1024像素*/
                 height: 863px;
                 margin: auto;/*并将margin(外边距)设置为auto*/
                 background: url("board.jpg")no-repeat;/*将<div>元素"body"的背景设置为图像board.jpg,从而将该图像添加到网页中。我们对这个<div>元素进行相对定位，以便相对于这个<div>对下一步添加的表格进行定位*/
+            }
+            div#messageArea/*<div>元素messageArea嵌套在<div>元素board中，因此以相对于<div>元素board的方式指定其位置。它将位于这样的位置：离<div>元素board的上边缘和左边缘都为0px*/
+            {
+                position: absolute;/*我们将消息区域定位到游戏板的左上角*/
+                top: 0px;
+                left: 0px;
+                color: rgb(83, 175, 19);
+            }
+            table/*让<table>元素离游戏板的左边缘和上边缘分别为173像素和98像素，从而确保它与背景图像中的网格对齐*/
+            {
+                position: absolute;
+                left: 173px;
+                top: 98px;
+                border-spacing: 0px;
+            }
+            td/*将每个<td>元素的宽度和高度都指定为特定的值，让表格单元格与网格单元格对齐*/
+            {
+                width: 94px;
+                height: 94px;
+            }
+            form/*将<form>元素放在游戏板的右下角。这将遮住右下角数字的一小部分，但玩家依然知道这些数字是什么，因此没有关系。我们还将<form>元素设置为漂亮的绿色，使其匹配背景图像*/
+            {
+                position: absolute;
+                bottom: 0px;
+                right: 0px;
+                padding: 15px;
+                background-color: rgb(83, 175, 19);
+            }
+            form input/*最后，稍微设置一下两个<input>元素的央视，使其与游戏的主题匹配*/
+            {
+                background-color: rgb(152, 207, 113);
+                border-color: rgb(83, 175, 19);
+                font-size: 1em;
             }
         </style>
     </head>
