@@ -20,6 +20,7 @@
     </head>
     <body>
         <div id="board"><!--我们将在这个<div>元素中添加表示游戏板的网格以及用于获取玩家输入的表单-->
+            <div id="messageArea"></div><!--在代码中，将使用<div>元素messageArea来显示消息-->
             <table><!--我们将表格嵌套在<div>元素board内-->
                 <tr>
                     <td id="00"></td><td id="01"></td><td id="02"></td><!--确保每个<td>元素的id都是正确的，对应于在网格中的行和列-->
@@ -50,7 +51,11 @@
                     <td id="63"></td><td id="64"></td><td id="65"></td><td id="66"></td>
                 </tr>
             </table>
-        </div>
+            <form><!--这个<form>元素包含两个<input>元素-->
+                <input type="text" id="guessInput" placeholder="A0"><!--其中一个用于输入猜测的位置(类型为text)-->
+                <input type="button" id="fireButton" value="Fire!"><!--另一个是一个按钮。注意到给这些元素指定了id，后面编写代码来获取玩家的猜测时将用到它们-->
+            </form>
+        </div><!--请注意，<div>元素messageArea、<table>元素和<form>元素都嵌套在<div>元素board中。这对下一页的CSS来说很重要-->
         <script src="battleship.js"></script><!--我们将代码放在文件battleship.js中，因此要先为此创建一个空白文件-->
     </body>
 </html>
