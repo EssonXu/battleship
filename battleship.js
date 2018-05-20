@@ -97,3 +97,50 @@ var model =/*model是一个对象*/
         return true;//否则，战舰已被击沉，因此返回true
     }
 }
+
+var controller =
+{
+    guess:0,//这里定义了controller对象，它包含一个属性guesses，这个属性被初始化为0
+    processGuess:function(guess)//这是方法processGuess的方法头，它将一个格式为"A0"的猜测位置作为参数
+    {
+        var location = parseGuess(guess);//使用parseGuess来验证玩家猜测的有效性。
+        if (location)//只要返回的不是null，就说明获得的位置是有效的。
+        {
+            this.guesses++;
+            var hit = model.fire(location);
+            //接下来，我们以字符串的方式将行号和列号传递给model对象的方法fire。别忘了，仅当击中了战舰时，方法fire才返回true
+            if (hit && model.shipsSunk === model.numberShips)//如果击中了战舰，且击沉的战舰数与游戏包含的战舰数目相等，就向玩家显示一条消息，指出他击沉了所有的战舰
+            {
+                view.displayMessage("You sank all my battleships, in "+this.guesses+"guesses");//我们还向玩家指出，它经过多少次猜测就击沉了所有的战舰。其中的guesses是this对象(即controller对象)的一个属性
+            }
+        }
+    }
+}
+
+function parseGuess(guess)//将猜测的位置赋给形参guess
+{
+    var alphabet = ["A", "B", "C", "D", "E","F", "G"];//一个数组，它包含可出现在有效猜测中的所有字母
+    if (guess == null || guess.length !== 2)//然后检查guess不为null且长度为2
+    {
+        alert("Oops,please enter a letter and a number on the board.");//如果不是这样的，就提醒玩家
+    }
+    else
+    {
+        firstChar = guess.charAt(0);//获取guess中的第一个字符
+        var row = alphabet.indexOf(firstChar);//再使用indexOf获取0~6的数字，它时这个字母在数组中的位置。为明白其中的工作原理，请尝试几个这样的示例
+        var column = guess.charAt(1);//获取字符串中的第二个字符，它表示列号
+        if (isNaN(row) || isNaN(column))//使用函数isNaN检查row和column是否都是数字
+        {
+            alert("Oops, that isn't on the board.");
+        }
+        else if (row < 0 || row >= model.boardSize || column < 0 || colum >= model.boardSize)
+        {
+            alert("Oops,that's off the board!")
+        }
+        else
+        {
+            return row+column;
+        }
+    }
+    return null;//如果执行到了这里，说明有检查是失败的，因此返回null
+}
