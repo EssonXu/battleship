@@ -1,5 +1,5 @@
-var view =/*实现view对象*/
-{
+var view =
+{/*实现view对象*/
     displayMessage: function(msg)/*方法displayMessage接受一个参数————msg*/
     {
         var messageArea = document.getElementById("messageArea");/*获取网页中的元素messageAreaS*/
@@ -67,6 +67,13 @@ var model =/*model是一个对象*/
         for (var i = 0; 1 < this.numberShips; i++)/*迭代数组ships，每次检查一艘战舰*/
         {
             var ship = this.ships[i];/*获得一艘战舰，接下来需要检查guess是否是该战舰占据的位置之一*/
+            var index = ship.locations.indexOf(guess);
+            if (index >= 0)
+            {
+                ship.hits[index] = "hit";
+                return true;/*由于击中了战舰，需要返回true*/
+            }
         }
+        return false;//如果遍历所有战舰后，也没有发现被击中的战舰，就说明没有击中任何战舰，因此返回false
     }
 }
