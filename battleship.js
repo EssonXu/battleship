@@ -71,13 +71,18 @@ var model =/*model是一个对象*/
             if (index >= 0)
             {
                 ship.hits[index] = "hit";
-                if(this.isSunk(ship))
+                view.displayHit(guess);//告诉视图，玩家的猜测击中了战舰
+                view.displayMessage("HIT!");//并让试图显示消息"HIT"
+                if(this.isSunk(ship))//确定战舰被击中后，执行这个检查。如果战舰被击沉，就将击沉的战舰数(存储在model对象的睡醒shipsSunk中)加1
                 {
+                    view.displayMessage("You sank my battleship!")
                     this.shipsSunk++;
                 }
                 return true;/*由于击中了战舰，需要返回true*/
             }
         }
+        view.displayMiss(guess);//告诉视图，玩家的猜测没有击中战舰
+        view.displayMessage("You missed.")//让视图显示消息"You missed"
         return false;//如果遍历所有战舰后，也没有发现被击中的战舰，就说明没有击中任何战舰，因此返回false
     },
     isSunk:function(ship)//我们将这个方法命名为isSunk。它接受一艘战舰作为参数，在该战舰被击沉时返回true，在它还浮在水面上时返回false
