@@ -144,3 +144,30 @@ function parseGuess(guess)//将猜测的位置赋给形参guess
     }
     return null;//如果执行到了这里，说明有检查是失败的，因此返回null
 }
+
+function init()//需要将这些代码放在一个地方，因此我们创建一个名为init的函数
+{
+    var fireButton = document.getElementById("fireButton");//首先，使用Fire！按钮的id获取一个指向它的应用
+    fireButton.onclick = handleFireButton;//然后，给这个按钮添加单击事件处理程序handleFireButton
+    var guessInput = document.getElementById("guessInput");
+    guessInput.onkeypress = handleKeyPress;//添加一个新的处理程序，用于处理HTML输入字段的按键事件
+}
+
+function handleFireButton()//每当玩家单击Fire！按钮时，都将调用这个函数
+{
+    var guessInput = document.getElementById("guessInput");//首先，使用这个表单元素的id(guessinput)来获取一个指向它的引用
+    var guess = guessInput.value;//然后，从这个表单元素中获取猜测，它存储在这个表单元素的属性value中
+    controller.processGuess(guess);//我们将玩家的猜测交给控制器，然后一切就像魔术一样发生了！
+    guessInput.value="";//这行代码将表单输入元素的值充值为空字符串。这样玩家再次猜测时，就无需选择并删除前一次的猜测了，否则将让玩家很恼火
+}
+window.onload = init;
+
+function handleKeyPress(e)
+{
+    var fireButton = document.getElementById("fireButton");
+    if (e.keyCode===13)
+    {
+        fireButton.click();
+        return false;
+    }
+}
