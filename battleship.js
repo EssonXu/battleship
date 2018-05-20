@@ -61,5 +61,12 @@ var model =/*model是一个对象*/
             locations:["10","11","12"],/*这是第三艘|这艘战舰位于游戏板单元格65的部位被击中*/
             hits:["","",""]/*属性ships是一个ship的对象组，其中每个元素都存储了一艘战舰的位置和被击中的部位。注意到我们将ships从变量改成了model对象的属性。*/
         }
-    ]
-};/*另外，对于数组locations和hits，我们以硬编码的方式指定其长度*/
+    ],/*另外，对于数组locations和hits，我们以硬编码的方式指定其长度*/
+    fire:function(guess)
+    {
+        for (var i = 0; 1 < this.numberShips; i++)/*迭代数组ships，每次检查一艘战舰*/
+        {
+            var ship = this.ships[i];/*获得一艘战舰，接下来需要检查guess是否是该战舰占据的位置之一*/
+        }
+    }
+}
