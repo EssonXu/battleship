@@ -71,9 +71,24 @@ var model =/*model是一个对象*/
             if (index >= 0)
             {
                 ship.hits[index] = "hit";
+                if(this.isSunk(ship))
+                {
+                    this.shipsSunk++;
+                }
                 return true;/*由于击中了战舰，需要返回true*/
             }
         }
         return false;//如果遍历所有战舰后，也没有发现被击中的战舰，就说明没有击中任何战舰，因此返回false
+    },
+    isSunk:function(ship)//我们将这个方法命名为isSunk。它接受一艘战舰作为参数，在该战舰被击沉时返回true，在它还浮在水面上时返回false
+    {
+        for (var i = 0; i < this.shipLength; i++)//这个方法将一艘战舰作为参数，并检查是否其每个部位都被击中
+        {
+            if(ship.hits[i] !== "hit")
+            {
+                return false;//只要有任何部位未被击中，战舰就还浮在水面上，因此返回false。
+            }
+        }
+        return true;//否则，战舰已被击沉，因此返回true
     }
 }
