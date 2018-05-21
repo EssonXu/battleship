@@ -96,6 +96,7 @@ var model =/*model是一个对象*/
         }
         return true;//否则，战舰已被击沉，因此返回true
     },
+    
     generateShipLocations:function()//我们将在model对象中添加这个方法
     {
         var locations;
@@ -106,6 +107,32 @@ var model =/*model是一个对象*/
         }
         while(this.collosion(locations));//并检查这些位置与游戏板中既有战舰的位置是否重叠。如果重叠，就需要再次尝试，不断地生成新位置，直到不重叠为止
         this.ships[i].locations = locations;
+    },
+    generateShip:function()
+    {
+        var direction = math.floor(Math.random()*2);//使用Math.random来生成一个0~1的随机数，再将结果乘以2，得到一个0~2(但不包括2)的随机数。然后，使用Math.floor将这个随机数转换成0或1
+        var row,col;
+        if(direction === 1)//如果direction为1，就意味着要创建一艘水平放置的战舰
+        {
+            //生成水平战舰的起始位置
+        }
+        else//如果direction为0，就意味着要创建一艘垂直放置的战舰
+        {
+            //生成垂直战舰的起始位置
+        }
+        var newShipLocations = [];//为创建新战舰的locations属性，我们首先创建一个空数组，再在其中逐一添加位置
+        for (var i = 0; i < this.shipLength; i++)//我们使用一个循环，其循环次数为战舰占据的单元格数
+        {
+            if (direction === 1)
+            {
+                //在水平战舰的位置数组中添加位置
+            }
+            else
+            {
+                //在垂直战舰的位置数组中添加位置
+            }
+        }
+        return newShipLocations;//生成所属有的位置后返回这个数组
     }
 },
 
