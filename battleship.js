@@ -95,8 +95,19 @@ var model =/*model是一个对象*/
             }
         }
         return true;//否则，战舰已被击沉，因此返回true
+    },
+    generateShipLocations:function()//我们将在model对象中添加这个方法
+    {
+        var locations;
+        for (var i = 0; i < this.numberShips; i++)//循环次数与要为其生成位置的战舰数相同
+        do//这里使用了do while循环
+        {
+            locations = this.generateShip();//生成战舰占据的一系列位置
+        }
+        while(this.collosion(locations));//并检查这些位置与游戏板中既有战舰的位置是否重叠。如果重叠，就需要再次尝试，不断地生成新位置，直到不重叠为止
+        this.ships[i].locations = locations;
     }
-}
+},
 
 var controller =
 {
